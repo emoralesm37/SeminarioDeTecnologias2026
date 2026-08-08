@@ -1,0 +1,342 @@
+% abtex2-modelo-artigo.tex, v-1.9.2 laurocesar
+% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Artigo Acadêmico em conformidade com
+% ABNT NBR 6022:2003: Informação e documentação - Artigo em publicação 
+% periódica científica impressa - Apresentação
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	article,			% indica que é um artigo acadêmico
+	11pt,				% tamanho da fonte
+	oneside,			% para impressão apenas no verso. Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE % títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	sumario=tradicional
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de simbolos
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+		
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+% ---
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Aplicaciones versus Arquitecturas \\ en cual confias? \\}
+\autor{Investigador \\ \and E.A. Morales Melgar \\ 7690-19-27494
+\thanks{emoralesm37@miumg.edu.gt}}
+\local{Guatemala}
+\data{2026, v-1.0.0}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={Modelo de artigo científico com abnTeX2},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{atigo científico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ---
+% Altera as margens padrões
+% ---
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% Espaçamento simples
+\SingleSpacing
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+
+%---
+%
+% Se desejar escrever o artigo em duas colunas, descomente a linha abaixo
+% e a linha com o texto ``FIM DE ARTIGO EM DUAS COLUNAS''.
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+%
+%---
+% página de titulo
+\maketitle
+
+% Resumen en Español
+\begin{columnaderesumen}
+La elección de la arquitectura adecuada es un factor crítico que impacta directamente en la escalabilidad, mantenibilidad, costos y agilidad del desarrollo según la necesidad o cambios requeridos.
+La decisión debe basarse en una evaluación de la necesidad de las aplicaciones considerando las arquitecturas de microservicios que son ideales para cargas de trabajo, sin embargo existen sistemas complejos con multiples funcionalidades interconectadas que las vuelve complejas, pero el objetivo de elegir una buena arquitectura permitira lanzar nuevas funcionalidades de forma rápida e independientes y automomas lo que al final de cuentas permitira ciclos de desarrollo más ágiles reduciendo costos operativamente hablando pero que será necesario las tecnologias que se pueda utilizar que sean más flexibles en opciones más adecuadas.
+Con la información antes detallada muestra que la arquitectura optima o depende de la tecnología de moda, sino de factores comom el tamaño  la madurez del equipo, el presupuesto operativo, el tiempo al mercado y los requisitos de cumplimiento normativo.
+
+ 
+ \vspace{\onelineskip}
+ 
+ \noindent
+ \textbf{Palabras-Clave}: Arquitectura, Escalabilidad, Complejidad, Aguilidad, Velocidad, microservicio.
+\end{columnaderesumen}
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introducción
+% ----------------------------------------------------------
+\section*{Introducción}
+\addcontentsline{toc}{section}{Introducción}
+
+A través de este documento compartiremos conceptos que nos pueda ayudar a comprender lo que es inicialmente el tema de como elegir una arquitectura según las necesidades de la aplicación.
+
+Además estaremos compartiendo concepto generales de sobre como elegira una arquitectura, basandose algunos criterios de selección que permitiran esa toma de desición.
+
+Se podra comprender de forma general las caracteristicas de algunas arquitecturas para aplicaciones disponibles que pueda implementarse según nuestra necesidad o la del negocio.
+
+Podremos visualizar la relación de estas tecnologías en los tipos de arquitectura que hoy en dia se pueden implementar.
+
+\footnote{\url{http://www.latex-project.org/lppl.txt}}.
+
+
+% ----------------------------------------------------------
+% Desarrollo del Tema
+% ----------------------------------------------------------
+\section{Desarrollo del Tema}
+La elección de la arquitectura de una aplicación es una decisión crucial que dependerá en gran medida al tipo de aplicación que se desea desarrollar ya que una elección inadecuada puede derivar en sistemas dificiles de escalar, costosos de mantener o incapaces de cumplir los requisitos de negocio a largo plazo. No existe una solución única que funcione para todos los casos. Los tipos de arquitecturas de software que nosotros adaptemos a nuestras soluciones nos apoyará a tener un servicio adecuado, que cumpla las espectativas y que den un buen resultado ya que antes de seleccionar un patron arquitectónico es indispensalbe clasificar correctamente el tipo de aplicación.
+
+Las aplicaciones web se dividen principalmente en SAP (Single Page Application), orientadas a alta interactividad en el cliente; MPA (Multi-Page Application), con SEO nativo y renderizado desde el servidor, PWA (Progressive Web App) con capacidades offline e instalación en dispositivos; y esquemas de renderizado hibrido que equilibran psicionamiento en buscadores con rendimiento.  En el ambito de backend y APIs se distinguen las interfaces RESTful, estandar más adoptado para integraciones; GraphQL que permite al cliente definir exactamente los datos requeridos, gRPC orientado a comunicaciones binaria de alto rendimiento entre servicios y las arquitecruras basda en mensajeria asincroniza para desacoplar productores de consumidores y adicionalmente existen aplicaciones móviles nativas, hibridas y web móviles asi como sistemas de escritorio plataformas de datos y analiticas de soluciones de IA.
+El modelo de hospedaje determina donde y como se ejecuta la aplicación, impactando costos, escalailidad, control operativo y cumplimiento normativo; entre las opciones disponibles destacan el hospedaje on-premise con control total pero alto gasto en capital; la nube privada (AWS, Azure, GCP) con escalabilidad practicamente ilimitada y pago por uso, el edge computing, ideal para IoT y baja latencia; el manejo de contenedores mediante Kubernetes que maximiza la portabilidad y las plataformas serverless que eliminan la gestion de infraestructura y escalan a cero; tomando en cuenta la restricciones regulatorias PCI, HIPAA, etc., pueden eliminar opciones de nube para ciertos tipos de datos por cumplimiento normativo.
+
+Si nos enfocamos en los patrones arquitectonicos, la arquitectura monolitica concentra el sistema en un unico desplegable, es simple de desarrollar inicialmente y resulta adecuada para MVP´s y proyectos pequeños, aunque su escalabilidad esta limitada principalmente al escalado vertical.  Los microservicios dividen el sistea en servicios pequeños, independientes y desplegales de forma autonoma, permitiendo escalar cada dominio por separado a costa de una mayor complejidad operativa y latencia de red.  El Patro serverless o FaaS ejecuta funciones bajo demanda sin gestión de servidores, resultando costo-eficiante para cargas esporadicas, pero expuesto a cold stars y limites de ejecución.  La arquitectura event-driven desacopla componentes mediante eventos asincronicos, aportando alta resilecnia a cambio de una depuración más compleja.  La arquitectura dexagonal o Clean Architecrure separa el nucleo de negocio de las dependencias externas medianta pruetos y adaptadores favoreciendo la testeabilidad en aplicaciones criticas. El patron CQRS combinado con Event Sourcing separa comandos de consulta y lamcena cada cambio como eentos inmutable, siendo especialemtne valioso en sistemas financieros que requeiren auditoria completa.  JAMstack combina JavaScript, APIX y contenido pre-generado par asitios estaticos de alto rendimiento, mientras que SOA precursora de los microservicios articula servicios de negocio reutilizables mediante un buz de servicios empesariales.
+
+\section{Forma de aplicar las decisiones}
+Un marco de decision cruza el tipo de aplicación con el modelo de hospedaje o host para recomendar la arquitectura principal y una alternativa viable.  Por ejemplo, una plataforma de comercio electronico con tráfico estacional funciona bien con microservicios desplegados en nube publica sobre Kubernetes, separando dominios como catalogo, carrito, pago y ordenes para aislar el procesamiento de pagos por motivos de cumplimiento PCI. Un sistema financiero transaccional se beneficia de CQRS con Event Sourcing en nube privada o hibrida, garantizando auditoria completa y alta disponibilidad.  Una plataforma de analitica empresarial resulta idonea para arquitectura Lambda combinanado procesamiento batch nocturno con metricas de tiempo real.  Un asistende de IA se adapta naturalemente a un esquema serverless con model serving, pagando unicamente por el uso de GPU durante la inferencia.  Un portal de contenido corporativo logra el máximo rndimiento y el menos costo operativos mediante JAMstack sobre una red de distribución de contenido y un sistema de IoT industrialse apoya en procesamiento edge combinado con arquitectur Kappa para reducir la latencia y centralizar la analitica en la nube.
+
+Hay que tomar en cuenta tambien pueden existir fallos recurrentes cuando la arquitectura se elige por moda tecnológica y no por diagnostico del contexto y la causa raíz es construir la arquitecrua antes de comprender el dominio de negocio, sin contar con un equipo lo suficientemente grande para sostener el adueñamiento por servicio.
+Se ha notado que la mayoria de los errores en la selección arquitectónica no proviene de fallos técnicos en si, sino de la ausencia de un diagnostico previo del dominio, del patron de carga y de la madurez real del equipo.
+
+
+\section{Conclusiones}
+La arquitectura optima depende del contexto de negocio, el tamaño del equipo y el patron de carga y no de la tecnología más popular del momento.
+Los microservicios solo aportan valor cuando existen dominios de negocio bien definidos y equipos con madurez operativa suficiente para sostenerlos.
+El modelo serverles es adecuado para cargas esporadicas e impredecibles, pero resulta contraproducente en escenarios de streaming continuo de alto volumen.
+Le evolución incremental, desde un monolito modular hasta la extraccion selectiva de servicios reduce el riesgo frente a decisiones arquitectonicas irreversibles tomadas de forma prematura.
+Dar los instrumentos necesarios, medir y validar el cumplmiento normativo desde el diseño son prácticas que deben acompañar cualquier decision arquitectónica sin importar el patron elegido.
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+\bookmarksetup{startatroot}% 
+% ---
+
+% ---
+% Conclusão
+% ---
+%**\section*{Considerações finais}
+%**\addcontentsline{toc}{section}{Considerações finais}
+
+%**\lipsum[1]
+
+%**\begin{citacao}
+%**\lipsum[2]
+%**\end{citacao}
+
+%**\lipsum[3]
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+%**\postextual
+
+% ---
+% Título e resumo em língua estrangeira
+% ---
+
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+
+% titulo em inglês
+\titulo{Aplicaciones versus Arquitecturas \\ en cual confias? \\}
+\emptythanks
+\maketitle
+
+% resumo em português
+%**\renewcommand{\resumoname}{Abstract}
+\begin{columnaderesumen}
+ \begin{otherlanguage*}{english}
+  % According to ABNT NBR 6022:2003, an abstract in foreign language is a back
+  % matter mandatory element.
+
+   \vspace{\onelineskip}
+ 
+   \noindent
+   \textbf{Key-words}: Arquitectura, Escalabilidad, Complejidad, Aguilidad, Velocidad, microservicio.
+ \end{otherlanguage*}  
+\end{columnaderesumen}
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{abntex2-modelo-references}
+
+Amazon Web Services. (2023). AWS Well-Architected Framework \\
+https://aws.amazon.com/architecture/well-architected/
+
+Fowler, M. (2015). Microservices: a definition of this new architectural them. martinfowler.com.  \\
+https://martinfowler.com/articles/microservices.html
+
+Kleppmann,M.(2017).Designing data-intensive applications.  O'Reilly Media \\
+Newman, S. (2021). Building microservices: Designing fine-grained systems (2.a.ed) O'Reilly Media.  \\
+
+Richards, M., y Ford N. (2020). Fundamental of software architecture: An engineering approach. O'Reilly Media.  \\
+
+Repositorio GITHub https://github.com/emoralesm37/SeminarioDeTecnologias2026.git
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Há diversas soluções prontas para glossário em LaTeX. 
+% Consulte o manual do abnTeX2 para obter sugestões.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+%**\begin{apendicesenv}
+
+% ----------------------------------------------------------
+%**\chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
+%**ac pretium ante justo a nulla curabitur tristique arcu eu metus}
+% ----------------------------------------------------------
+%**\lipsum[55-57]
+
+%**\end{apendicesenv}
+% ---
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+%**\cftinserthook{toc}{AAA}
+% ---
+% Inicia os anexos
+% ---
+%\anexos
+%**\begin{anexosenv}
+
+% ---
+%**\chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+%**parturient montes nascetur ridiculus mus}
+% ---
+
+%**\lipsum[31]
+
+%**\end{anexosenv}
+
+\end{document}
