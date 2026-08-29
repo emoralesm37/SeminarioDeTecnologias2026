@@ -1,0 +1,339 @@
+% abtex2-modelo-artigo.tex, v-1.9.2 laurocesar
+% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Artigo Acadêmico em conformidade com
+% ABNT NBR 6022:2003: Informação e documentação - Artigo em publicação 
+% periódica científica impressa - Apresentação
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	article,			% indica que é um artigo acadêmico
+	11pt,				% tamanho da fonte
+	oneside,			% para impressão apenas no verso. Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE % títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	sumario=tradicional
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de simbolos
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+		
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+% ---
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Dónde aplicas la Seguridad?}
+\autor{Investigador \\ \and E.A. Morales Melgar \\ 7690-19-27494
+\thanks{emoralesm37@miumg.edu.gt}}
+\local{Guatemala}
+\data{2026, v-1.0.0}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={Modelo de artigo científico com abnTeX2},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{atigo científico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ---
+% Altera as margens padrões
+% ---
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% Espaçamento simples
+\SingleSpacing
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+
+%---
+%
+% Se desejar escrever o artigo em duas colunas, descomente a linha abaixo
+% e a linha com o texto ``FIM DE ARTIGO EM DUAS COLUNAS''.
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+%
+%---
+% página de titulo
+\maketitle
+
+% Resumen en Español
+\begin{columnaderesumen}
+qué diferencia hay entre la
+Ciberseguridad, la Seguridad Informática y la Seguridad de la Información? Los tres términos se usan frecuentemente como si fueran sinónimos, pero en realidad representan disciplinas distintas, con alcances y objetivos propios. El objetivo de este trabajo es explicar con claridad qué significa cada uno, en qué se diferencian, dónde se aplica cada concepto y cómo se relacionan entre sí. Para desarrollar este análisis se revisaron normas internacionales reconocidas, como la norma ISO 27001 sobre gestión de seguridad de la información, el Marco de Ciberseguridad del Instituto Nacional de Estándares y Tecnología.  Los resultados muestran que la Seguridad de la Información es el concepto más amplio, ya que protege la información sin importar si está en papel, en una computadora o se transmite de forma verbal.  La Seguridad Informática, por su parte, se enfoca en proteger los sistemas tecnológicos de una organización. Y la Ciberseguridad es la disciplina que enfrenta específicamente los ataques que llegan desde internet. Veremos como las tres áreas no compiten entre sí, sino que se complementan, y que cualquier organización que quiera proteger su información de manera efectiva necesita contemplar los tres conceptos de forma coordinada.
+
+ 
+ \vspace{\onelineskip}
+ 
+ \noindent
+ \textbf{Palabras-Clave}: Seguridad, Informática, Ciberseguridad, Protección de datos, Amenaza.
+\end{columnaderesumen}
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introducción
+% ----------------------------------------------------------
+\section*{Introducción}
+\addcontentsline{toc}{section}{Introducción}
+
+A través de este documento compartiremos conceptos que nos pueda ayudar a comprender lo que es inicialmente el tema de como elegir una arquitectura según las necesidades de la aplicación.
+
+Además estaremos compartiendo concepto generales de sobre como elegira una arquitectura, basandose algunos criterios de selección que permitiran esa toma de desición.
+
+Se podra comprender de forma general las caracteristicas de algunas arquitecturas para aplicaciones disponibles que pueda implementarse según nuestra necesidad o la del negocio.
+
+Podremos visualizar la relación de estas tecnologías en los tipos de arquitectura que hoy en dia se pueden implementar.
+
+\footnote{\url{http://www.latex-project.org/lppl.txt}}.
+
+
+% ----------------------------------------------------------
+% Desarrollo del Tema
+% ----------------------------------------------------------
+\section{Desarrollo del Tema}
+Escuchar términos como “ciberseguridad” o “seguridad informática” es algo cotidiano, los encontramos en noticias, en correos de advertencia del banco, en conversaciones del trabajo. Pero cuando alguien pregunta cuál es la diferencia entre ellos, la respuesta suele ser confusa o incompleta. Esta situación no es casual, los tres términos que analizamos Seguridad de la Información, Seguridad Informática y Ciberseguridad están relacionados entre sí, pero cada uno tiene un propósito, un alcance y unas herramientas distintas. Entenderlos con claridad es el primer paso para saber cómo protegerse de manera efectiva en el entorno digital.
+
+La Seguridad de la Información es el concepto más amplio y también el más antiguo de los tres. Antes de que existieran las computadoras, ya existía la necesidad de proteger información como documentos secretos, cartas confidenciales, archivos clasificados. Hoy esa necesidad sigue
+vigente, y la Organización Internacional de Normalización la define como la protección de tres aspectos fundamentales de cualquier información; que solo puedan acceder a ella quienes tienen permiso, que nadie pueda modificarla sin autorización, y que esté disponible cuando realmente se necesite y lo más importante de este concepto es que no importa el formato de la información, la cual puede estar impresa en papel, guardada en una computadora o transmitida de forma verbal. La Seguridad de la Información aplica en todos los casos. Es en esencia, la política general que define cómo una organización cuida lo que sabe y lo que guarda, independientemente de la tecnología que usen las organizaciones.
+
+La Seguridad Informática es más concreta. Se enfoca en proteger los sistemas de cómputo de una organización como lo son las computadoras, los servidores, las redes internas, los programas y los datos almacenados en ellos. Es la parte de la seguridad que se ocupa de poner los “candados digitales” a la tecnología. Cuando en una empresa se configuran contraseñas de acceso, se instalan programas antivirus, se hacen copias de respaldo de los datos o se mantienen actualizados los sistemas operativos, todo eso es Seguridad Informática. Su enfoque es principalmente técnico y operativo: el equipo de tecnología de la organización es el principal responsable de aplicar sus controles. A diferencia de la Seguridad de la Información, aquí el foco está en los sistemas tecnológicos como tal, no en la información en cualquier formato posible.
+
+La Ciberseguridad es la más reciente de las tres disciplinas, y la que más ha crecido en importancia durante los últimos años. Se refiere a la protección de sistemas, redes y datos frente a ataques que provienen del mundo digital conectado, es decir, del internet. Pensemos en ella como la defensa frente a lo que viene de afuera: los correos engañosos que intentan robar contraseñas, los programas maliciosos que secuestran los archivos de una empresa y piden dinero para liberarlos, o los ataques masivos que saturan un sitio web hasta dejarlo fuera de servicio. Según el Instituto Nacional de Estándares y Tecnología, la ciberseguridad es la capacidad de proteger o defender el uso del espacio digital frente a este tipo de ataques. Su campo de acción es especialmente crítico en sectores como la banca en línea, los servicios de salud digitales, el comercio electrónico y cualquier servicio que dependa de internet para funcionar.
+
+Una forma sencilla de entender la relación entre los tres conceptos es imaginar una empresa como una casa. La Seguridad de la Información sería el reglamento del hogar: las normas que definen qué información es privada, quién puede verla y cómo debe cuidarse, sin importar si está escrita en un cuaderno o guardada en una computadora. La Seguridad Informática sería el sistema de cerraduras, alarmas y cámaras dentro de la casa: los mecanismos tecnológicos que protegen los equipos y las redes internas. Y la Ciberseguridad sería el sistema de vigilancia perimetral que detecta y repele a quien intenta entrar desde afuera. Los tres son necesarios. Si solo se cuida la puerta principal pero se deja una ventana abierta, la casa sigue siendo vulnerable. De la misma forma, una organización que atiende únicamente uno de estos enfoques y descuida los otros dos queda expuesta a riesgos que bien podrían evitarse. Las diferencias entre los tres conceptos se pueden resumir en tres preguntas clave: ¿qué se protege?, ¿de qué se protege? y ¿en qué entorno se aplica? La Seguridad de la Información protege cualquier tipo de información, sea digital o no, frente a cualquier tipo de amenaza, en cualquier organización. La Seguridad Informática protege los sistemas tecnológicos de una organización frente a fallas o ataques que afecten su funcionamiento interno. Y la Ciberseguridad protege los sistemas conectados a internet frente a los ataques que provienen del mundo digital exterior. La Agencia de la Unión Europea para la Ciberseguridad reportó en 2023 que los engaños por correo electrónico y los programas que secuestran información para pedir rescate económico siguen siendo las amenazas más frecuentes y costosas para las organizaciones, lo que confirma que protegerse en el entorno digital ya no es opcional, es una necesidad tan básica como cerrar con llave la puerta de una oficina.
+
+Llama la atención al revisar este tema que muchas organizaciones, especialmente las pequeñas y medianas, tienden a ver la seguridad únicamente como un asunto de tecnología. Esto puede llevar a invertir en herramientas sin haber definido antes qué información realmente vale la pena proteger y por qué. En el resultado, puede ser que se protejan bien los equipos pero se descuide la información más sensible. La recomendación es empezar siempre desde la Seguridad de la Información: definir primero qué hay que cuidar y por qué, y solo entonces decidir cómo hacerlo con la tecnología adecuada.
+
+\section{Conclusiones}
+1. La Seguridad de la Información es la base estratégica de cualquier programa de protección, define qué cuidar y por qué, sin importar el soporte o formato en que exista esa información.
+2. La Seguridad Informática lleva esa estrategia a la práctica dentro de los sistemas tecnológicos de la organización, protegiéndolos con medidas concretas y verificables.
+3. La Ciberseguridad es la respuesta especializada a los ataques del mundo digital conectado, y su relevancia crece cada año a medida que más servicios dependen de internet para funcionar.
+4. Los tres conceptos se necesitan mutuamente y se complementan, ninguno es suficiente por sí solo para garantizar una protección real e integral.
+5. Entender la diferencia hay tres disciplinas es el primer paso para construir una cultura de seguridad sólida y tomar decisiones mejor informadas en cualquier organización
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+\bookmarksetup{startatroot}% 
+% ---
+
+% ---
+% Conclusão
+% ---
+%**\section*{Considerações finais}
+%**\addcontentsline{toc}{section}{Considerações finais}
+
+%**\lipsum[1]
+
+%**\begin{citacao}
+%**\lipsum[2]
+%**\end{citacao}
+
+%**\lipsum[3]
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+%**\postextual
+
+% ---
+% Título e resumo em língua estrangeira
+% ---
+
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+
+% titulo em inglês
+\titulo{Dónde aplicas la Seguridad?}
+\emptythanks
+\maketitle
+
+% resumo em português
+%**\renewcommand{\resumoname}{Abstract}
+\begin{columnaderesumen}
+ \begin{otherlanguage*}{english}
+  % According to ABNT NBR 6022:2003, an abstract in foreign language is a back
+  % matter mandatory element.
+
+   \vspace{\onelineskip}
+ 
+   \noindent
+   \textbf{Key-words}: Seguridad, Informática, Ciberseguridad, Protección de datos, Amenaza.
+ \end{otherlanguage*}  
+\end{columnaderesumen}
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{abntex2-modelo-references}
+
+International Organization for Standardization. (2018). ISO/IEC 27000:2018 \\ Information technology, Security techniques, Information security management systems \\ https://www.iso.org/standard/73906.html
+
+International Organization for Standardization. (2022). ISO/IEC 27001:2022\\ Information security, cybersecurity and privacy protection, Information security management systems \\  https://www.iso.org/standard/27001
+
+National Institute of Standards and Technology. (2024). \\ The NIST Cybersecurity Framework 2.0. U.S. Department of Commerce. \\ https://doi.org/10.6028/NIST.CSWP.29
+
+National Institute of Standards and Technology. (2020). \\ NIST Special Publication 800-53 Rev. 5: Security and Privacy Controls for Information Systems and Organizations. \\
+https://doi.org/10.6028/NIST.SP.800-53r5 \\
+
+
+Repositorio GITHub https://github.com/emoralesm37/SeminarioDeTecnologias2026.git
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Há diversas soluções prontas para glossário em LaTeX. 
+% Consulte o manual do abnTeX2 para obter sugestões.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+%**\begin{apendicesenv}
+
+% ----------------------------------------------------------
+%**\chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
+%**ac pretium ante justo a nulla curabitur tristique arcu eu metus}
+% ----------------------------------------------------------
+%**\lipsum[55-57]
+
+%**\end{apendicesenv}
+% ---
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+%**\cftinserthook{toc}{AAA}
+% ---
+% Inicia os anexos
+% ---
+%\anexos
+%**\begin{anexosenv}
+
+% ---
+%**\chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+%**parturient montes nascetur ridiculus mus}
+% ---
+
+%**\lipsum[31]
+
+%**\end{anexosenv}
+
+\end{document}
