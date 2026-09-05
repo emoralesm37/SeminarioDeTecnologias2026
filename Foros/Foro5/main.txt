@@ -1,0 +1,344 @@
+% abtex2-modelo-artigo.tex, v-1.9.2 laurocesar
+% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Artigo Acadêmico em conformidade com
+% ABNT NBR 6022:2003: Informação e documentação - Artigo em publicação 
+% periódica científica impressa - Apresentação
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	article,			% indica que é um artigo acadêmico
+	11pt,				% tamanho da fonte
+	oneside,			% para impressão apenas no verso. Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE % títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	sumario=tradicional
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de simbolos
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+		
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+% ---
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Orquestación de Tecnologías \\ en la Nube \\}
+\autor{Investigador \\ \and E.A. Morales Melgar \\ 7690-19-27494
+\thanks{emoralesm37@miumg.edu.gt}}
+\local{Guatemala}
+\data{2026, v-1.0.0}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={Modelo de artigo científico com abnTeX2},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{atigo científico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ---
+% Altera as margens padrões
+% ---
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% Espaçamento simples
+\SingleSpacing
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+
+%---
+%
+% Se desejar escrever o artigo em duas colunas, descomente a linha abaixo
+% e a linha com o texto ``FIM DE ARTIGO EM DUAS COLUNAS''.
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+%
+%---
+% página de titulo
+\maketitle
+% ----------------------------------------------------------
+% Resumen
+% ----------------------------------------------------------
+% Resumen en Español
+\begin{columnaderesumen}
+En este trabajo revisaremos cómo se conectan las herramientas modernas para crear programas de cómputo ágiles, seguros y adaptables a los clientes a través del internet. El objetivo principal es entender de qué manera la organización de aplicaciones, el control automático de servidores, la protección de accesos y las buenas prácticas de diseño trabajan en conjunto; para lograrlo, analizamos la información técnica más reciente y revisamos cómo las empresas aplican estas tecnologías en el mundo real. Como resultado, descubrimos que al combinar estas herramientas las fallas del sistema disminuyen notablemente, la seguridad del usuario mejora y los equipos de desarrollo pueden publicar actualizaciones de forma constante y sin interrupciones. En conclusión, adoptar este enfoque simplifica el mantenimiento de los sistemas a largo plazo, aprovecha mejor los recursos en la nube y permite que los programas crezcan sin perder estabilidad.
+
+ 
+ \vspace{\onelineskip}
+ 
+ \noindent
+ \textbf{Palabras-Clave}: Kubernetes, Microservicios, OAuth, Computacion en la nube, TFA (Twelve-Factor App)
+\end{columnaderesumen}
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introducción
+% ----------------------------------------------------------
+\section*{Introducción}
+\addcontentsline{toc}{section}{Introducción}
+
+En la era de la transformación digital, las organizaciones exigen aplicaciones capaces de adaptarse con rapidez, escalar bajo demanda y operar sin interrupciones. Para responder a estas exigencias, la industria del software ha migrado de las estructuras monolíticas tradicionales a soluciones distribuidas, donde el paradigma de los microservicios y la infraestructura en la nube ocupan un rol central. Sin embargo, la descentralización de los componentes introduce nuevos desafíos en términos de despliegue, seguridad, gestión de recursos y mantenibilidad nos garantiza la integración armónica de estos elementos permitiendo implementar arquitecturas modernas, eficientes, seguras y verdaderamente nativas de la nube.
+
+\footnote{\url{http://www.latex-project.org/lppl.txt}}.
+
+
+% ----------------------------------------------------------
+% Desarrollo del Tema
+% ----------------------------------------------------------
+\section{Desarrollo del Tema}
+La evolución de la ingeniería de software ha desplazado de forma acelerada las arquitecturas monolíticas hacia modelos distribuidos e infraestructuras elásticas en la nube. En este sistem, la arquitectura de microservicios surge como un estilo de diseño donde una aplicación se compone de servicios pequeños, independientes y acoplados de forma débil. Cada microservicio ejecuta un proceso único y se comunica a través de mecanismos ligeros, comúnmente APIs RESTful o mensajería asíncrona. La ventaja principal radica en el despliegue autónomo, la escalabilidad granular y la tolerancia a fallas aisladas. Pero a pesar de todo, la gestión de decenas o cientos de microservicios introduce una complejidad operativa grande que requiere herramientas avanzadas de gestión de infraestructura.
+Para resolver el reto de la administración masiva de contenedores, la orquestación de servidores con Kubernetes se ha consolidado como el estándar de la industria. Kubernetes abstrae la infraestructura de la nube y automatiza el despliegue, el escalado y la operación de aplicaciones en contenedores. Mediante componentes clave como los Pods, Services e Ingress Controllers, la plataforma gestiona automáticamente el balanceo de carga, la autoreparación (self-healing) de instancias caídas, el descubrimiento de servicios y el escalado horizontal automatizado (Horizontal Pod Autoscaler). De este modo, la orquestación garantiza que la topología de microservicios mantenga la alta disponibilidad prometida sin requerir intervención manual constante en el nivel de máquina virtual.
+En el plano de la seguridad para sistemas distribuidos, el protocolo OAuth 2.0 desempeña un rol fundamental en la autorización delegada.
+En una arquitectura de microservicios, la verificación centralizada de identidad resulta inviable sin un esquema estandarizado. OAuth 2.0 habilita a un cliente a obtener acceso limitado a un recurso protegido en nombre del propietario del recurso, emitiendo tokens de acceso (habitualmente JSON Web Tokens o JWT). Al implementar OAuth 2.0 en la nube, los componentes de entrada o API Gateways interceptan las peticiones, validan las credenciales mediante un Servidor de Autorización centralizado y propagan la identidad de forma segura hacia los microservicios internos sin exponer credenciales sensibles.
+
+La relación entre microservicios, Kubernetes y OAuth 2.0 en la nube se respalda en la metodología de los 12 Factores de la nube (The Twelve-Factor App). Esta metodología establece buenas prácticas transversales:
+I. Código base: Un código base rastreado en control de versiones con múltiples despliegues.
+II. Dependencias: Declaración e aislamiento explícito de dependencias (soportado nativamente por los contenedores).
+III. Configuración: Almacenamiento de la configuración en el entorno de ejecución y no en el código.
+IV. Servicios de respaldo (Backing services): Tratamiento de bases de datos y colas de mensajes como recursos adscritos.
+V. Construcción, difusión, ejecución: Separación estricta entre las etapas de compilación y ejecución.
+VI. Procesos: Ejecución de la aplicación como uno o más procesos sin estado (stateless).
+VII. Asignación de puertos: Exportación de servicios mediante la vinculación a puertos.
+VIII. Concurrencia: Escalado horizontal mediante el modelo de procesos.
+IX. Desechabilidad: Maximización de la robustez con un inicio rápido y una desconexión segura.
+X. Paridad en desarrollo/producción: Mantener los entornos de desarrollo, prueba y producción lo más similares posible.
+XI. Historiales (Logs): Tratamiento de los registros de eventos como flujos continuos.
+XII. Administración: Ejecución de tareas de gestión/administración como procesos puntuales.
+
+Al cumplir con estos principios, la infraestructura de orquestación puede reemplazar, destruir o escalar microservicios de manera dinámica y determinista.
+
+El uso en conjunto de Kubernetes, OAuth 2.0 y los 12 Factores transforma enormemente el ciclo de vida del desarrollo de software. Debemos de notar que la curva de aprendizaje inicial y la complejidad de la infraestructura aumentan, la resiliencia operativa y la velocidad de entrega justifican la inversión tecnológica en proyectos de escala empresarial.
+
+\section{Conclusiones}
+La orquestación con Kubernetes abstrae la complejidad de la infraestructura, asegurando alta disponibilidad y escalabilidad automática en arquitecturas de microservicios.
+
+El protocolo OAuth 2.0 estandariza la seguridad orientada a la nube, permitiendo la propagación segura de identidades sin comprometer el aislamiento entre servicios.
+
+La adopción estricta de la metodología de los 12 Factores garantiza que las aplicaciones sean verdaderamente nativas de la nube, optimizando su rendimiento y mantenibilidad.
+
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+\bookmarksetup{startatroot}% 
+% ---
+
+% ---
+% Conclusão
+% ---
+%**\section*{Considerações finais}
+%**\addcontentsline{toc}{section}{Considerações finais}
+
+%**\lipsum[1]
+
+%**\begin{citacao}
+%**\lipsum[2]
+%**\end{citacao}
+
+%**\lipsum[3]
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+%**\postextual
+
+% ---
+% Título e resumo em língua estrangeira
+% ---
+
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+
+% titulo em inglês
+\titulo{Orquestación de Tecnologías \\ en la Nube \\}
+\emptythanks
+\maketitle
+
+% resumo em português
+%**\renewcommand{\resumoname}{Abstract}
+\begin{columnaderesumen}
+ \begin{otherlanguage*}{english}
+  % According to ABNT NBR 6022:2003, an abstract in foreign language is a back
+  % matter mandatory element.
+
+   \vspace{\onelineskip}
+ 
+   \noindent
+   \textbf{Key-words}: Kubernetes, Microservicios, OAuth, Computacion en la nube, TFA (Twelve Factor App)
+ \end{otherlanguage*}  
+\end{columnaderesumen}
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{abntex2-modelo-references}
+
+Burns, B., Beda, J., y Hightower, K. (2019).  \\
+Kubernetes: Up and running: Dive into the future of infrastructure (2nd ed.). O'Reilly Media.
+
+Newman, S. (2021)  \\
+Building microservices: Designing fine-grained systems (2nd ed.). O'Reilly Media.
+
+Wiggins, A. (2017) \\
+The twelve-factor app. Recuperado de https://12factor.net/es/  \\
+
+Repositorio GITHub \\ https://github.com/emoralesm37/SeminarioDeTecnologias2026.git
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Há diversas soluções prontas para glossário em LaTeX. 
+% Consulte o manual do abnTeX2 para obter sugestões.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+%**\begin{apendicesenv}
+
+% ----------------------------------------------------------
+%**\chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
+%**ac pretium ante justo a nulla curabitur tristique arcu eu metus}
+% ----------------------------------------------------------
+%**\lipsum[55-57]
+
+%**\end{apendicesenv}
+% ---
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+%**\cftinserthook{toc}{AAA}
+% ---
+% Inicia os anexos
+% ---
+%\anexos
+%**\begin{anexosenv}
+
+% ---
+%**\chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+%**parturient montes nascetur ridiculus mus}
+% ---
+
+%**\lipsum[31]
+
+%**\end{anexosenv}
+
+\end{document}
