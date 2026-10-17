@@ -1,0 +1,342 @@
+% abtex2-modelo-artigo.tex, v-1.9.2 laurocesar
+% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Artigo Acadêmico em conformidade com
+% ABNT NBR 6022:2003: Informação e documentação - Artigo em publicação 
+% periódica científica impressa - Apresentação
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	article,			% indica que é um artigo acadêmico
+	11pt,				% tamanho da fonte
+	oneside,			% para impressão apenas no verso. Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE % títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	sumario=tradicional
+	]{abntex2}
+
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de simbolos
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+		
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+% ---
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Proyectos de Calidad \\ para Nuestros Usuarios \\}
+\autor{Investigador \\ \and E.A. Morales Melgar \\ 7690-19-27494
+\thanks{emoralesm37@miumg.edu.gt}}
+\local{Guatemala}
+\data{2026, v-1.0.0}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={Modelo de artigo científico com abnTeX2},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{atigo científico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ---
+% Altera as margens padrões
+% ---
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% Espaçamento simples
+\SingleSpacing
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+
+%---
+%
+% Se desejar escrever o artigo em duas colunas, descomente a linha abaixo
+% e a linha com o texto ``FIM DE ARTIGO EM DUAS COLUNAS''.
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+%
+%---
+% página de titulo
+\maketitle
+% ----------------------------------------------------------
+% Resumen
+% ----------------------------------------------------------
+% Resumen en Español
+\begin{columnaderesumen}
+EnEste artículo investiga cómo garantizar la calidad de un proyecto de tecnología de información (TI) desde la perspectiva del usuario final, complementando el enfoque tradicional centrado en procesos de gestión con un marco orientado al resultado percibido por el cliente. El objetivo fue identificar qué condiciones debe cumplir un entregable de software para considerarse de calidad, sin que el usuario necesite conocer los procesos, estándares o equipos involucrados en su construcción. Para ello se revisaron fuentes especializadas en gestión de proyectos de TI, el modelo de calidad de producto software ISO/IEC 25010, el listado de riesgos de seguridad OWASP Top 10, y los instrumentos de satisfacción del cliente Kano, CSAT y NPS. Los resultados muestran que la calidad percibida se sostiene sobre cuatro dimensiones interdependientes: el cumplimiento de requisitos funcionales verificables, el desempeño de características no funcionales con metas numéricas explícitas, la ausencia de vulnerabilidades de seguridad críticas, y la satisfacción medible del usuario a lo largo del ciclo de vida del proyecto.
+La aplicación del marco a un caso práctico de un portal de autoservicio de empleados confirmó que estas cuatro dimensiones pueden definirse, medirse y verificarse de forma independiente a la metodología de gestión empleada. Se concluye que garantizar la calidad de un proyecto de TI exige trasladar el enfoque desde el cumplimiento de procesos internos hacia la verificación objetiva del resultado entregado al cliente.
+
+ 
+ \vspace{\onelineskip}
+ 
+ \noindent
+ \textbf{Palabras-Clave}: Calidad, Cliente, Requisitos, Aplicaciones, Seguridad, Satisfacción, Standar
+\end{columnaderesumen}
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introducción
+% ----------------------------------------------------------
+\section*{Introducción}
+\addcontentsline{toc}{section}{Introducción}
+
+En este documento tratare de introducir en los aspectos más importantes y que debemos de tomar en cuenta para que un proyecto se gestione y entrege con calidad y garantizemos a nuestros usuarios finales un servicio con excelencia, y herramientas que faciliten sus actividades y obtengan mejores resultados de los que actualmente esta obteniendo y asi evitar dolores de cabeza por sistemas inadecuados, adaptando mejores procesos para que el usuario final, ya que al final al usuario pasa por desapersibido todos los procesos que se deben de cumplir por parte de las areas de tecnología para una entrega satisfactoria a nuestros usuarios.
+
+\footnote{\url{http://www.latex-project.org/lppl.txt}}.
+
+
+% ----------------------------------------------------------
+% Desarrollo del Tema
+% ----------------------------------------------------------
+\section{Desarrollo del Tema}
+La calidad de un proyecto de TI se evalúa tradicionalmente a través de los procesos internos de gestión -planificación, aseguramiento y control de calidad- definidos por marcos como el Project Management Institute [PMI], 2021. Sin embargo, el usuario final de un sistema no percibe estos procesos, sino únicamente el entregable resultante: nunca ve un plan de calidad ni sabe si hubo una auditoría de QA. Por ello, el presente análisis propone evaluar la calidad desde cuatro dimensiones que sí son visibles para el cliente: el cumplimiento funcional, el comportamiento no funcional, la seguridad y la satisfacción percibida. El primer componente exige que cada requisito acordado con el usuario de negocio se traduzca en un criterio de
+aceptación verificable y en al menos un caso de prueba que demuestre su cumplimiento; la ambigüedad en los requisitos continúa siendo la causa más frecuente de retrabajo y de disputas sobre el alcance en proyectos de software (Lemon Learning, 2024).
+El segundo componente corresponde a las características no  funcionales, formalizadas internacionalmente por el modelo ISO/IEC 25010 de calidad de producto software, el cual define ocho características: adecuación funcional, fiabilidad, usabilidad, eficiencia de desempeño, mantenibilidad, portabilidad, seguridad y compatibilidad (ISO 25000, s.f.). De estas, el usuario percibe directamente la fiabilidad -disponibilidad y tolerancia a fallos-, la
+usabilidad -facilidad de aprendizaje y accesibilidad-, la eficiencia de desempeño -tiempos de respuesta bajo carga real- y la compatibilidad con los sistemas que ya utiliza. La recomendación práctica, con frecuencia omitida en la práctica profesional, es acordar metas numéricas verificables para cada característica -por ejemplo, tiempo de carga menor a dos segundos o disponibilidad mensual de 99.5 porciento - en lugar de declaraciones de intención sin indicadores medibles; un requisito no funcional sin número asociado es, en la práctica, una buena intención imposible de auditar.
+El tercer componente, la seguridad, merece tratamiento independiente porque una falla aquí anula el resto de los atributos de calidad: un sistema funcional, rápido y fácil de usar que sufre una fuga de datos deja de ser un producto de calidad para convertirse en un incidente. La referencia más utilizada a nivel mundial para priorizar riesgos de seguridad de aplicaciones es el OWASP Top 10, que identifica fallas recurrentes como el control de acceso roto, la configuración de seguridad incorrecta, los fallos criptográficos, la inyección de código, el diseño inseguro y la autenticación débil (OWASP Foundation, 2025). Garantizar este componente requiere incorporar la seguridad desde el diseño (security by design) mediante modelado de amenazas antes de programar, realizar pruebas de penetración antes de cada despliegue relevante, y mantener monitoreo y alertas continuas en producción, en lugar de tratar la seguridad como una revisión de último momento.
+El cuarto componente es la satisfacción percibida, que no puede asumirse y debe medirse con instrumentos específicos. El modelo Kano permite clasificar las funcionalidades según su efecto sobre la satisfacción -básicas, de desempeño o de entusiasmo- evitando que el equipo invierta esfuerzo en características llamativas mientras descuida capacidades que el usuario da por sentadas, como un inicio de sesión confiable (ProductPlan, s.f.). Durante la entrega o la aceptación del producto, el Customer Satisfaction Score (CSAT) mide qué tan conforme quedó el usuario con una interacción puntual, mientras que el Net Promoter Score (NPS), aplicado periódicamente después de la adopción, mide la lealtad y la disposición a recomendar el producto (Qualtrics, s.f.). Ninguna de las tres herramientas reemplaza a las otras: Kano orienta qué construir, CSAT mide una entrega concreta y NPS revela la percepción global en el tiempo.
+La aplicación conjunta de estas cuatro dimensiones se validó en un caso práctico: la implementación de un portal de autoservicio de empleados para una empresa retail con diez mil colaboradores. Se definieron metas numéricas de desempeño y disponibilidad, se mitigaron los riesgos del OWASP Top 10 mediante control de acceso basado en rol, cifrado de datos sensibles y autenticación multifactor, y se midió la satisfacción mediante Kano antes del desarrollo, CSAT durante la aceptación de usuario (86 porciento de respuestas satisfechas) y NPS tres meses después del lanzamiento (+42 puntos). El caso evidencia que las cuatro dimensiones pueden definirse, verificarse y medirse de forma objetiva, independientemente de la metodología de gestión o del
+estándar de proceso que utilice el equipo del proyecto; el denominador común no es el proceso elegido, sino la existencia de un criterio medible para cada dimensión.
+
+\section{Obeservaciones}
+Los cuatro componentes identificados rara vez se gestionan de forma
+integrada: los equipos técnicos priorizan lo funcional y el desempeño, mientras que la seguridad y la satisfacción quedan relegadas a revisiones tardías, lo que explica buena parte de los proyectos técnicamente correctos pero percibidos como fallidos por el cliente.
+
+
+\section{Conclusiones}
+1. La calidad percibida por el cliente depende de cuatro dimensiones verificables: cumplimiento funcional, desempeño no funcional, seguridad y satisfacción medida.
+2. Los requisitos no funcionales solo son auditables cuando se acompañan de metas numéricas explícitas acordadas con el usuario.
+3. La seguridad debe incorporarse desde el diseño, no como una revisión final, pues una sola falla anula el resto de los atributos de calidad.
+4. Instrumentos como Kano, CSAT y NPS permiten medir objetivamente la satisfacción en distintos momentos del ciclo de vida del proyecto.
+
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+\bookmarksetup{startatroot}% 
+% ---
+
+% ---
+% Conclusão
+% ---
+%**\section*{Considerações finais}
+%**\addcontentsline{toc}{section}{Considerações finais}
+
+%**\lipsum[1]
+
+%**\begin{citacao}
+%**\lipsum[2]
+%**\end{citacao}
+
+%**\lipsum[3]
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+%**\postextual
+
+% ---
+% Título e resumo em língua estrangeira
+% ---
+
+% \twocolumn[    		% INICIO DE ARTIGO EM DUAS COLUNAS
+
+% titulo em inglês
+\titulo{Proyectos de Calidad \\ para Nuestros Usuarios \\}
+\emptythanks
+\maketitle
+
+% resumo em português
+%**\renewcommand{\resumoname}{Abstract}
+\begin{columnaderesumen}
+ \begin{otherlanguage*}{english}
+  % According to ABNT NBR 6022:2003, an abstract in foreign language is a back
+  % matter mandatory element.
+
+   \vspace{\onelineskip}
+ 
+   \noindent
+   \textbf{Key-words}: Calidad, Cliente, Requisitos, Aplicaciones, Seguridad, Satisfacción, Standar
+ \end{otherlanguage*}  
+\end{columnaderesumen}
+
+% ]  				% FIM DE ARTIGO EM DUAS COLUNAS
+% ---
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{abntex2-modelo-references}
+
+ISO 25000. (s.f.). ISO/IEC 25010: Modelo de calidad de producto software.  \\
+https://www.iso25000.com/index.php/normas-iso-25000/iso-25010
+
+Lemon Learning. (2024). Gestión de proyectos de TI: guía completa para equipos y responsables  \\
+https://lemonlearning.com/es/blog/gestion-proyectos-ti-guia-completa
+
+OWASP Foundation. (2025). OWASP Top 10:2025 \\
+ https://top10.owasp.org/2025/ \\
+
+ProductPlan. (s.f.). Kano Model. \\
+https://www.productplan.com/glossary/kano-model/
+
+Project Management Institute. (2021). A guide to the project management body of knowledge
+
+Repositorio GITHub \\ https://github.com/emoralesm37/SeminarioDeTecnologias2026.git
+
+
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Há diversas soluções prontas para glossário em LaTeX. 
+% Consulte o manual do abnTeX2 para obter sugestões.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+%**\begin{apendicesenv}
+
+% ----------------------------------------------------------
+%**\chapter{Nullam elementum urna vel imperdiet sodales elit ipsum pharetra ligula
+%**ac pretium ante justo a nulla curabitur tristique arcu eu metus}
+% ----------------------------------------------------------
+%**\lipsum[55-57]
+
+%**\end{apendicesenv}
+% ---
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+%**\cftinserthook{toc}{AAA}
+% ---
+% Inicia os anexos
+% ---
+%\anexos
+%**\begin{anexosenv}
+
+% ---
+%**\chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+%**parturient montes nascetur ridiculus mus}
+% ---
+
+%**\lipsum[31]
+
+%**\end{anexosenv}
+
+\end{document}
